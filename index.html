@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page Bài Tập · Vibe Coding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Nền sóng (giống slide) -->
+    <div class="wave" aria-hidden="true">
+      <video src="assets/wave-loop.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <!--
+      ============================================================
+      ĐÂY LÀ TRANG WEB MẪU CHO BÀI TẬP.
+      Sửa các phần đánh dấu "SỬA TÔI". Làm xong là Lộ trình bên
+      phải tự tích xanh và mở bài tiếp theo.
+      ============================================================
+    -->
+    <div class="page">
+      <!-- ===== Thanh đầu trang ===== -->
+      <header class="site-header">
+        <div class="brand">
+          <!-- SỬA TÔI (Bài 2.2): thay logo bằng ảnh của bạn -->
+          <img id="logo" src="assets/logo-placeholder.svg" alt="Logo" class="logo" />
+          <!-- SỬA TÔI (Bài 2.1): đổi tên thương hiệu thành "Apero" -->
+          <span id="brandName" class="brand-name">BRAND X</span>
+        </div>
+        <nav class="nav">
+          <a href="#features">Tính năng</a>
+          <a href="#contact">Liên hệ</a>
+          <a href="#" class="btn btn-sm">Bắt đầu</a>
+        </nav>
+      </header>
+
+      <!-- ===== Hero ===== -->
+      <main>
+        <section class="hero">
+          <span class="eyebrow">Trang web của bạn</span>
+          <!-- SỬA TÔI (Bài 2.1): đổi nội dung tiêu đề chính -->
+          <h1 id="headline">Tiêu đề mẫu — hãy yêu cầu AI đổi câu này</h1>
+          <p class="hero-sub">
+            Mỗi đoạn chữ, mỗi màu, mỗi tấm ảnh đều nằm trong các file. Nhờ AI
+            chỉnh sửa và xem điều kỳ diệu — làm theo Lộ trình bên phải nhé.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn">Nút chính</a>
+            <a href="#features" class="btn btn-ghost">Tìm hiểu thêm</a>
+          </div>
+        </section>
+
+        <!-- ===== Tính năng + widget "lượt ghé thăm" (CÓ LỖI - Bài 2.3) ===== -->
+        <section id="features" class="features">
+          <div class="card">
+            <div class="card-ico">⚡</div>
+            <h3>Nhanh</h3>
+            <p>Dựng trang trong vài phút bằng cách ra lệnh cho AI.</p>
+          </div>
+          <div class="card">
+            <div class="card-ico">🛠️</div>
+            <h3>Dễ sửa</h3>
+            <p>Đổi chữ, đổi màu, đổi ảnh — tất cả chỉ là sửa văn bản trong file.</p>
+          </div>
+          <div class="card visit-card">
+            <div class="card-ico">👀</div>
+            <h3>Lượt ghé thăm</h3>
+            <!-- Bài 2.3: widget này đang LỖI. Mở F12 → Console để xem lỗi. -->
+            <p class="visit">
+              <span id="visitCount">—</span>
+            </p>
+            <small class="visit-note">(đang lỗi — mở F12 xem Console)</small>
+          </div>
+        </section>
+
+        <!-- ===== Liên hệ ===== -->
+        <section id="contact" class="contact">
+          <h2>Liên hệ</h2>
+          <form onsubmit="return false">
+            <input type="email" placeholder="Email của bạn" />
+            <button class="btn" type="submit">Gửi</button>
+          </form>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span id="brandFooter">BRAND X</span> · Trang mẫu cho workshop Vibe Coding
+        <span id="apiInfo" class="api-info"></span>
+      </footer>
+    </div>
+
+    <!-- ===== Lộ trình bài tập (hướng dẫn tương tác) ===== -->
+    <aside id="guide" class="guide" aria-label="Lộ trình bài tập"></aside>
+    <button id="guideToggle" class="guide-toggle" aria-label="Ẩn/hiện lộ trình">
+      🚀 Lộ trình
+    </button>
+
+    <script src="config.js"></script>
+    <script src="guide.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

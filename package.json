@@ -1,0 +1,10 @@
+{
+  "name": "workshop-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page mẫu cho workshop Vibe Coding (trang tĩnh).",
+  "scripts": {
+    "dev": "npx --yes serve -l 5173 .",
+    "start": "npx --yes serve -l 5173 ."
+  }
+}
