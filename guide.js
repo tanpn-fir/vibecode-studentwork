@@ -233,8 +233,8 @@
       id: "env", tag: "Bài 7", target: "#keyAlert",
       title: { vi: "Đưa API key vào .env", en: "Move the API key into .env" },
       instruct: {
-        vi: "Cảnh báo đỏ đầu trang đang in API key bị lộ. Nhờ AI chuyển key trong <code>config.js</code> ra file <code>.env</code> — làm xong cảnh báo sẽ tự chuyển sang XANH.",
-        en: "The red alert at the top shows the leaked API key. Ask the AI to move the key from <code>config.js</code> into a <code>.env</code> file — once done the alert turns GREEN automatically.",
+        vi: "Cảnh báo đỏ đầu trang đang in API key bị lộ. Nhờ AI chuyển key trong <code>config.js</code> ra file <code>.env</code> — làm xong cảnh báo sẽ tự chuyển sang XANH.<br><br>⚠️ Đây là bài tập với key giả. Ngoài thực tế, hãy LUÔN kiểm tra kỹ không để lộ key trước MỖI lần deploy.",
+        en: "The red alert at the top shows the leaked API key. Ask the AI to move the key from <code>config.js</code> into a <code>.env</code> file — once done the alert turns GREEN automatically.<br><br>⚠️ This is an exercise with a fake key. In real life, ALWAYS double-check no key is exposed before EVERY deploy.",
       },
       prompt: {
         vi: "Trong config.js đang hardcode API_KEY và trang đang hiện cảnh báo key bị lộ. Hãy chuyển key ra file .env (để config.js không còn chứa key thật), thêm .env vào .gitignore để không bị push lên GitHub, và hướng dẫn tôi khai báo key đó trong Environment Variables trên Vercel.",
@@ -384,11 +384,11 @@
 
     var allDone = done === TASKS.length;
     document.getElementById("gBanner").classList.toggle("show", allDone);
-    // hoàn thành hết → giấy chứng nhận tự xuất hiện (chỉ lần đầu)
+    // hoàn thành hết → popup CHÚC MỪNG tự xuất hiện (chỉ lần đầu), từ đó tới chứng nhận
     if (allDone && !certAutoShown && window.VibeCert) {
       certAutoShown = true;
       try { localStorage.setItem("vibecode-cert-shown", "1"); } catch (e) {}
-      setTimeout(window.VibeCert.open, 500);
+      setTimeout(window.VibeCert.openCongrats, 500);
     }
   }
 

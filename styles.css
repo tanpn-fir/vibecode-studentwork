@@ -462,6 +462,38 @@ body.guide-collapsed .guide-toggle { display: block; }
 }
 body.cert-open { overflow: hidden; }
 
+/* ===== popup chúc mừng (hiện khi hoàn thành hết) ===== */
+.congrats-overlay {
+  position: fixed; inset: 0; z-index: 55; display: flex;
+  align-items: center; justify-content: center; padding: 24px;
+  background: rgba(10, 14, 24, 0.5); backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity 0.2s ease;
+}
+.congrats-overlay.show { opacity: 1; }
+.congrats-modal {
+  width: min(420px, 92vw); text-align: center; padding: 34px 30px 26px;
+  border-radius: 22px; background: #fff;
+  border: 1px solid var(--line); box-shadow: 0 30px 70px rgba(10,14,24,0.4);
+  transform: translateY(16px) scale(0.96); transition: transform 0.24s cubic-bezier(0.22,1,0.36,1);
+}
+.congrats-overlay.show .congrats-modal { transform: none; }
+.congrats-emoji { font-size: 3rem; line-height: 1; animation: congratsPop 0.5s both cubic-bezier(0.22,1.4,0.4,1); }
+@keyframes congratsPop { from { transform: scale(0); } to { transform: scale(1); } }
+.congrats-title { margin: 12px 0 6px; font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+.congrats-body { margin: 0 0 22px; font-size: 1rem; line-height: 1.55; color: var(--muted); }
+.congrats-cta {
+  width: 100%; padding: 14px 20px; border: none; border-radius: 12px; cursor: pointer;
+  font-family: inherit; font-weight: 800; font-size: 1rem; color: #fff;
+  background: linear-gradient(120deg, var(--indigo), var(--violet));
+  box-shadow: 0 12px 28px rgba(53,86,235,0.35);
+}
+.congrats-cta:hover { filter: brightness(1.06); }
+.congrats-later {
+  margin-top: 10px; width: 100%; padding: 9px; border: none; background: transparent;
+  color: var(--muted); font-family: inherit; font-size: 0.9rem; cursor: pointer;
+}
+.congrats-later:hover { color: var(--ink); }
+
 @media (max-width: 620px) {
   .cert-frame { padding: 30px 22px 24px; }
   .cert-foot { flex-direction: column; align-items: center; gap: 18px; }

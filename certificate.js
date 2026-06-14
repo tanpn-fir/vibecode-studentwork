@@ -1,9 +1,9 @@
 /* ===========================================================================
    GIẤY CHỨNG NHẬN  ·  CERTIFICATE
-   - Tự xuất hiện khi học viên hoàn thành TẤT CẢ bài trong Lộ trình.
-   - Học viên nhập TÊN → hiện giấy chứng nhận đẹp, có logo Apero, tải về (In / PDF).
-   - Backdoor: nút 🏆 nhỏ góc dưới-trái (luôn có) + deep-link ?cert=1
-     để mentor xem trước / giới thiệu cho học viên.
+   - Hoàn thành TẤT CẢ bài trong Lộ trình → hiện popup CHÚC MỪNG, rồi bấm để
+     tới nhận giấy chứng nhận (nhập tên → hiện chứng nhận đẹp, tải về In/PDF).
+   - Backdoor cho mentor: CHỈ hiện nút 🏆 khi chạy local (localhost). Trên prod
+     (vd *.vercel.app) KHÔNG hiện nút này — mentor vẫn mở nhanh được bằng ?cert=1.
    - Song ngữ Việt / English (theo nút 🌐).
    File này KHÔNG cần sửa.
    =========================================================================== */
@@ -34,9 +34,20 @@
     download: { vi: "⬇️ Tải về (In / PDF)", en: "⬇️ Download (Print / PDF)" },
     close: { vi: "Đóng", en: "Close" },
     backdoor: { vi: "Xem thử giấy chứng nhận (mentor)", en: "Preview certificate (mentor)" },
+    // popup chúc mừng
+    congratsTitle: { vi: "Chúc mừng bạn! 🎉", en: "Congratulations! 🎉" },
+    congratsBody: {
+      vi: "Bạn đã hoàn thành TẤT CẢ bài tập Vibe Coding. Nhận giấy chứng nhận của riêng bạn nào!",
+      en: "You finished ALL the Vibe Coding exercises. Time to claim your very own certificate!",
+    },
+    congratsCta: { vi: "🏆 Nhận giấy chứng nhận", en: "🏆 Get your certificate" },
+    congratsLater: { vi: "Để sau", en: "Maybe later" },
   };
 
   var state = { name: "" };
+  var IS_LOCAL =
+    /^(localhost|127\.|0\.0\.0\.0|\[?::1\]?$)/.test(location.hostname) ||
+    location.protocol === "file:";
 
   function fmtDate() {
     try {
@@ -50,8 +61,51 @@
     }
   }
 
-  var overlay;
+  /* ---------- popup CHÚC MỪNG ---------- */
+  var congrats;
+  function buildCongrats() {
+    if (congrats) return;
+    congrats = document.createElement("div");
+    congrats.id = "congratsOverlay";
+    congrats.className = "congrats-overlay";
+    congrats.hidden = true;
+    congrats.innerHTML =
+      '<div class="congrats-modal" role="dialog" aria-modal="true">' +
+        '<div class="congrats-emoji">🎉</div>' +
+        '<h3 class="congrats-title"></h3>' +
+        '<p class="congrats-body"></p>' +
+        '<button class="congrats-cta" type="button"></button>' +
+        '<button class="congrats-later" type="button"></button>' +
+      "</div>";
+    document.body.appendChild(congrats);
+    congrats.addEventListener("click", function (e) { if (e.target === congrats) closeCongrats(); });
+    congrats.querySelector(".congrats-later").addEventListener("click", closeCongrats);
+    congrats.querySelector(".congrats-cta").addEventListener("click", function () {
+      closeCongrats();
+      setTimeout(open, 180);
+    });
+    document.addEventListener("vibe:lang", function () { if (!congrats.hidden) applyCongratsText(); });
+  }
+  function applyCongratsText() {
+    congrats.querySelector(".congrats-title").textContent = t(TX.congratsTitle);
+    congrats.querySelector(".congrats-body").textContent = t(TX.congratsBody);
+    congrats.querySelector(".congrats-cta").textContent = t(TX.congratsCta);
+    congrats.querySelector(".congrats-later").textContent = t(TX.congratsLater);
+  }
+  function openCongrats() {
+    buildCongrats();
+    applyCongratsText();
+    congrats.hidden = false;
+    setTimeout(function () { congrats.classList.add("show"); }, 10);
+  }
+  function closeCongrats() {
+    if (!congrats) return;
+    congrats.classList.remove("show");
+    setTimeout(function () { congrats.hidden = true; }, 200);
+  }
 
+  /* ---------- giấy chứng nhận ---------- */
+  var overlay;
   function buildOnce() {
     if (overlay) return;
     overlay = document.createElement("div");
@@ -142,24 +196,26 @@
     setTimeout(function () { overlay.hidden = true; }, 220);
   }
 
-  window.VibeCert = { open: open, close: close };
+  window.VibeCert = { open: open, close: close, openCongrats: openCongrats };
 
-  // backdoor: nút nhỏ góc dưới-trái cho mentor
-  var bd = document.createElement("button");
-  bd.id = "certBackdoor";
-  bd.className = "cert-backdoor";
-  bd.type = "button";
-  bd.textContent = "🏆";
-  bd.addEventListener("click", open);
-  function syncBackdoorTitle() { bd.title = t(TX.backdoor); }
-  syncBackdoorTitle();
-  document.addEventListener("vibe:lang", syncBackdoorTitle);
-  document.body.appendChild(bd);
+  // backdoor cho mentor — CHỈ khi chạy local (không hiện trên prod)
+  if (IS_LOCAL) {
+    var bd = document.createElement("button");
+    bd.id = "certBackdoor";
+    bd.className = "cert-backdoor";
+    bd.type = "button";
+    bd.textContent = "🏆";
+    bd.addEventListener("click", open);
+    function syncBackdoorTitle() { bd.title = t(TX.backdoor); }
+    syncBackdoorTitle();
+    document.addEventListener("vibe:lang", syncBackdoorTitle);
+    document.body.appendChild(bd);
+  }
 
-  // deep-link ?cert=1 -> mở ngay (tiện kiểm tra)
+  // deep-link cho mentor (mọi nơi): ?cert=1 mở thẳng chứng nhận · ?congrats=1 xem popup
   try {
-    if (new URLSearchParams(location.search).get("cert") === "1") {
-      setTimeout(open, 300);
-    }
+    var qp = new URLSearchParams(location.search);
+    if (qp.get("cert") === "1") setTimeout(open, 300);
+    else if (qp.get("congrats") === "1") setTimeout(openCongrats, 300);
   } catch (e) {}
 })();
