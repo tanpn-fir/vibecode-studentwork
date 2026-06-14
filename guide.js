@@ -103,8 +103,8 @@
       id: "run", tag: "Bài 3", target: null,
       title: { vi: "Chạy được trang", en: "Get the page running" },
       instruct: {
-        vi: "Trang đã chạy và bạn đang xem nó. 🎉 Nếu chưa thấy, bảo AI chạy giúp ở chế độ dev.",
-        en: "The page is running and you're looking at it. 🎉 If not, ask the AI to run it in dev mode.",
+        vi: "Trang đã chạy và bạn đang xem nó. 🎉 Nếu chưa thấy, bảo AI chạy giúp ở chế độ dev.<br><br>🧪 Thử ngay: copy link localhost gửi cho bạn bè / mở trên điện thoại → KHÔNG vào được! Vì trang đang chỉ nằm trên máy bạn. Muốn mọi người xem được → tới bài Deploy Vercel.",
+        en: "The page is running and you're looking at it. 🎉 If not, ask the AI to run it in dev mode.<br><br>🧪 Try it: copy the localhost link and send it to a friend / open it on your phone → it WON'T load! The page only lives on your machine. To let everyone see it → the Deploy to Vercel exercise.",
       },
       prompt: {
         vi: "Hãy chạy giúp tôi trang web này ở chế độ xem trước (dev) và cho tôi địa chỉ localhost để mở trên trình duyệt.",
