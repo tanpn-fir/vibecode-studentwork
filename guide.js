@@ -38,6 +38,7 @@
     manual: { vi: "tự đánh dấu", en: "mark yourself" },
     waiting: { vi: "đang chờ", en: "waiting" },
     banner: { vi: "🎉 Hoàn thành tất cả — bạn giỏi lắm!", en: "🎉 All done — you nailed it!" },
+    certBtn: { vi: "Nhận giấy chứng nhận", en: "Get your certificate" },
     completedOf: { vi: "hoàn thành", en: "completed" },
     keepGoing: { vi: " · làm tiếp bài đang mở 👇", en: " · keep going with the open task 👇" },
   };
@@ -265,6 +266,9 @@
   var openIds = {};
   var lastCurrent = null;
   var refs = [];
+  // chỉ tự bật giấy chứng nhận MỘT LẦN (nhớ qua localStorage)
+  var certAutoShown = false;
+  try { certAutoShown = localStorage.getItem("vibecode-cert-shown") === "1"; } catch (e) {}
 
   function build() {
     var root = document.getElementById("guide");
@@ -277,7 +281,13 @@
       '<div class="g-progress"><i id="gBar"></i></div>' +
       '<p class="guide-tip">' + L(UI.tip) + "</p>" +
       '<div class="g-list" id="gList"></div>' +
-      '<div class="g-done-banner" id="gBanner">' + L(UI.banner) + "</div>";
+      '<div class="g-done-banner" id="gBanner"><span>' + L(UI.banner) + "</span>" +
+      '<button class="g-cert-btn" id="gCertBtn" type="button">🏆 ' + L(UI.certBtn) + "</button></div>";
+
+    var certBtn = document.getElementById("gCertBtn");
+    if (certBtn) certBtn.addEventListener("click", function () {
+      if (window.VibeCert) window.VibeCert.open();
+    });
 
     var list = document.getElementById("gList");
     TASKS.forEach(function (t) {
@@ -366,7 +376,15 @@
     document.getElementById("gBar").style.width = pct + "%";
     document.getElementById("gSub").textContent =
       done + "/" + TASKS.length + " " + L(UI.completedOf) + (currentId ? L(UI.keepGoing) : "");
-    document.getElementById("gBanner").classList.toggle("show", done === TASKS.length);
+
+    var allDone = done === TASKS.length;
+    document.getElementById("gBanner").classList.toggle("show", allDone);
+    // hoàn thành hết → giấy chứng nhận tự xuất hiện (chỉ lần đầu)
+    if (allDone && !certAutoShown && window.VibeCert) {
+      certAutoShown = true;
+      try { localStorage.setItem("vibecode-cert-shown", "1"); } catch (e) {}
+      setTimeout(window.VibeCert.open, 500);
+    }
   }
 
   // thu gọn / hiện thanh Lộ trình

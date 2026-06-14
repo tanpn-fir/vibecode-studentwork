@@ -17,6 +17,7 @@ learner will modify step by step by giving you instructions. When it runs, a
 | `config.js` | Has a **hardcoded API key** on purpose (for the `.env` exercise). The page prints it on screen as a red "exposed key" warning. |
 | `i18n.js` | Bilingual VI/EN text + the 🌐 language toggle — **do not edit**. |
 | `guide.js` | The "Lộ trình" checklist UI — **do not edit**. It auto-detects task completion. |
+| `certificate.js` | Completion certificate — **do not edit**. Auto-pops when ALL tasks are done; the learner types their name + adds a photo and can Print/Save as PDF. (Mentor backdoor: the 🏆 button bottom-left, or `?cert=1`.) |
 | `assets/` | Images, logo placeholder, wave video. |
 | `setup-plan.md` | Environment install plan (git/node/python…). |
 
