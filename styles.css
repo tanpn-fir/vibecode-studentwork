@@ -285,6 +285,51 @@ body.guide-collapsed .guide { transform: translateX(100%); }
 body.guide-collapsed .page { padding-right: 0; }
 body.guide-collapsed .guide-toggle { display: block; }
 
+/* ===== nút đổi ngôn ngữ VI / EN ===== */
+.lang-toggle {
+  position: fixed; top: 16px; right: 18px; z-index: 22;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: rgba(255,255,255,0.9);
+  color: var(--ink); font-family: inherit; font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 0.04em; backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(11,19,28,0.08); transition: background 0.2s, transform 0.1s;
+}
+.lang-toggle:hover { background: #fff; }
+.lang-toggle:active { transform: scale(0.95); }
+
+/* ===== Bài 7: cảnh báo API key bị lộ ===== */
+.key-alert {
+  margin: 0 0 22px; padding: 16px 20px; border-radius: 14px;
+  border: 1px solid var(--line); background: #fff;
+}
+.key-alert.exposed {
+  border: 1.5px solid #f3b0a8;
+  background: linear-gradient(180deg, #fff4f2, #fff);
+  box-shadow: 0 8px 24px rgba(220,50,30,0.10);
+  animation: keyPulse 1.6s ease-in-out infinite;
+}
+.key-alert.safe {
+  border: 1.5px solid #9ee2c4;
+  background: linear-gradient(180deg, #effaf4, #fff);
+}
+.key-alert-tag {
+  display: inline-block; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.02em;
+}
+.key-alert.exposed .key-alert-tag { color: #d8341f; }
+.key-alert.safe .key-alert-tag { color: #11875a; }
+.key-alert-msg { margin: 8px 0 0; font-size: 0.95rem; color: var(--muted); }
+.key-alert-code {
+  display: block; margin: 10px 0; padding: 10px 12px; border-radius: 8px;
+  background: #2a0f0c; color: #ff9b8a; font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92rem; word-break: break-all; user-select: all;
+}
+.key-alert-hint { margin: 8px 0 0; font-size: 0.85rem; color: var(--muted); }
+@keyframes keyPulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(220,50,30,0.10); }
+  50% { box-shadow: 0 8px 30px rgba(220,50,30,0.22); }
+}
+
 /* ===== responsive ===== */
 @media (max-width: 1024px) {
   :root { --guide-w: 0px; }

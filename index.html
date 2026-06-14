@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page Bài Tập · Vibe Coding</title>
+    <title data-i18n="title">Landing Page Bài Tập · Vibe Coding</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,6 +18,11 @@
       <video src="assets/wave-loop.mp4" autoplay muted loop playsinline></video>
     </div>
 
+    <!-- Nút đổi ngôn ngữ VI / EN -->
+    <button id="langToggle" class="lang-toggle" aria-label="Switch language">
+      <span aria-hidden="true">🌐</span> <span id="langLabel">EN</span>
+    </button>
+
     <!--
       ============================================================
       ĐÂY LÀ TRANG WEB MẪU CHO BÀI TẬP.
@@ -29,79 +34,83 @@
       <!-- ===== Thanh đầu trang ===== -->
       <header class="site-header">
         <div class="brand">
-          <!-- SỬA TÔI (Bài 2.2): thay logo bằng ảnh của bạn -->
+          <!-- SỬA TÔI (Bài 3.2): thay logo bằng ảnh của bạn -->
           <img id="logo" src="assets/logo-placeholder.svg" alt="Logo" class="logo" />
-          <!-- SỬA TÔI (Bài 2.1): đổi tên thương hiệu thành "Apero" -->
-          <span id="brandName" class="brand-name">BRAND X</span>
+          <!-- SỬA TÔI (Bài 3.1): đổi tên thương hiệu thành "Apero" -->
+          <span id="brandName" class="brand-name" data-i18n="brand">BRAND X</span>
         </div>
         <nav class="nav">
-          <a href="#features">Tính năng</a>
-          <a href="#contact">Liên hệ</a>
-          <a href="#" class="btn btn-sm">Bắt đầu</a>
+          <a href="#features" data-i18n="navFeatures">Tính năng</a>
+          <a href="#contact" data-i18n="navContact">Liên hệ</a>
+          <a href="#" class="btn btn-sm" data-i18n="navStart">Bắt đầu</a>
         </nav>
       </header>
 
-      <!-- ===== Hero ===== -->
       <main>
+        <!-- ===== BÀI 7: cảnh báo API key bị lộ (app.js điều khiển) ===== -->
+        <div id="keyAlert" class="key-alert" hidden></div>
+
+        <!-- ===== Hero ===== -->
         <section class="hero">
-          <span class="eyebrow">Trang web của bạn</span>
-          <!-- SỬA TÔI (Bài 2.1): đổi nội dung tiêu đề chính -->
-          <h1 id="headline">Tiêu đề mẫu — hãy yêu cầu AI đổi câu này</h1>
-          <p class="hero-sub">
+          <span class="eyebrow" data-i18n="heroEyebrow">Trang web của bạn</span>
+          <!-- SỬA TÔI (Bài 3.1): đổi nội dung tiêu đề chính -->
+          <h1 id="headline" data-i18n="headline">Tiêu đề mẫu — hãy yêu cầu AI đổi câu này</h1>
+          <p class="hero-sub" data-i18n="heroSub">
             Mỗi đoạn chữ, mỗi màu, mỗi tấm ảnh đều nằm trong các file. Nhờ AI
             chỉnh sửa và xem điều kỳ diệu — làm theo Lộ trình bên phải nhé.
           </p>
           <div class="hero-actions">
-            <a href="#" class="btn">Nút chính</a>
-            <a href="#features" class="btn btn-ghost">Tìm hiểu thêm</a>
+            <a href="#" class="btn" data-i18n="btnPrimary">Nút chính</a>
+            <a href="#features" class="btn btn-ghost" data-i18n="btnLearn">Tìm hiểu thêm</a>
           </div>
         </section>
 
-        <!-- ===== Tính năng + widget "lượt ghé thăm" (CÓ LỖI - Bài 2.3) ===== -->
+        <!-- ===== Tính năng + widget "lượt ghé thăm" (CÓ LỖI - Bài 3.3) ===== -->
         <section id="features" class="features">
           <div class="card">
             <div class="card-ico">⚡</div>
-            <h3>Nhanh</h3>
-            <p>Dựng trang trong vài phút bằng cách ra lệnh cho AI.</p>
+            <h3 data-i18n="f1Title">Nhanh</h3>
+            <p data-i18n="f1Body">Dựng trang trong vài phút bằng cách ra lệnh cho AI.</p>
           </div>
           <div class="card">
             <div class="card-ico">🛠️</div>
-            <h3>Dễ sửa</h3>
-            <p>Đổi chữ, đổi màu, đổi ảnh — tất cả chỉ là sửa văn bản trong file.</p>
+            <h3 data-i18n="f2Title">Dễ sửa</h3>
+            <p data-i18n="f2Body">Đổi chữ, đổi màu, đổi ảnh — tất cả chỉ là sửa văn bản trong file.</p>
           </div>
           <div class="card visit-card">
             <div class="card-ico">👀</div>
-            <h3>Lượt ghé thăm</h3>
-            <!-- Bài 2.3: widget này đang LỖI. Mở F12 → Console để xem lỗi. -->
+            <h3 data-i18n="visitTitle">Lượt ghé thăm</h3>
+            <!-- Bài 3.3: widget này đang LỖI. Mở F12 → Console để xem lỗi. -->
             <p class="visit">
               <span id="visitCount">—</span>
             </p>
-            <small class="visit-note">(đang lỗi — mở F12 xem Console)</small>
+            <small class="visit-note" data-i18n="visitNote">(đang lỗi — mở F12 xem Console)</small>
           </div>
         </section>
 
         <!-- ===== Liên hệ ===== -->
         <section id="contact" class="contact">
-          <h2>Liên hệ</h2>
+          <h2 data-i18n="contactTitle">Liên hệ</h2>
           <form onsubmit="return false">
-            <input type="email" placeholder="Email của bạn" />
-            <button class="btn" type="submit">Gửi</button>
+            <input type="email" data-i18n-ph="emailPh" placeholder="Email của bạn" />
+            <button class="btn" type="submit" data-i18n="sendBtn">Gửi</button>
           </form>
         </section>
       </main>
 
       <footer class="site-footer">
-        <span id="brandFooter">BRAND X</span> · Trang mẫu cho workshop Vibe Coding
-        <span id="apiInfo" class="api-info"></span>
+        <span id="brandFooter" data-i18n="brand">BRAND X</span>
+        <span data-i18n="footerText"> · Trang mẫu cho workshop Vibe Coding</span>
       </footer>
     </div>
 
     <!-- ===== Lộ trình bài tập (hướng dẫn tương tác) ===== -->
     <aside id="guide" class="guide" aria-label="Lộ trình bài tập"></aside>
     <button id="guideToggle" class="guide-toggle" aria-label="Ẩn/hiện lộ trình">
-      🚀 Lộ trình
+      🚀 <span data-i18n="guideToggle">Lộ trình</span>
     </button>
 
+    <script src="i18n.js"></script>
     <script src="config.js"></script>
     <script src="guide.js"></script>
     <script src="app.js"></script>
