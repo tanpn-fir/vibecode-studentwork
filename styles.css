@@ -180,6 +180,7 @@ a { color: var(--brand); text-decoration: none; }
 .guide-sub { margin: 8px 0 14px; font-size: 0.85rem; color: #9aa7c7; }
 .g-progress { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; margin-bottom: 22px; }
 .g-progress > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--violet)); transition: width 0.45s; }
+.guide-tip { margin: 0 0 16px; font-size: 0.8rem; line-height: 1.45; color: #c9b8ff; background: rgba(159,112,252,0.12); border-radius: 10px; padding: 9px 12px; }
 
 .g-list { display: grid; gap: 12px; }
 .g-step {

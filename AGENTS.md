@@ -33,14 +33,26 @@ The learner must do these themselves, with your guidance. Until they explicitly 
 1. **Read & understand** the code first (open the files above, explain briefly how they link).
 2. **Run** the site and confirm the "Lộ trình" panel shows.
 3. Then **walk the learner through the tasks in the panel, one at a time**, in **Vietnamese**, beginner-friendly:
-   - Bài 2.1 — rename the brand to **"Apero"** (`#brandName` in `index.html`).
-   - Change the main headline (`#headline`).
-   - Change the primary color to **purple** (`--brand` in `styles.css`).
-   - Add the learner's logo/image (`#logo`).
-   - Fix the **"visit counter" bug** — guide them to open **F12 → Console**, copy the red error, and paste it to you; only then fix it.
-   - Commit with Git, push to a **private** GitHub repo, deploy to **Vercel**.
-   - Move the hardcoded API key in `config.js` into a `.env` file.
+   - **Bài 3** — run the site (already running).
+   - **Bài 3.1** — rename the brand to **"Apero"**, change the main headline, and change the primary color to **purple**.
+   - **Bài 3.2** — add the learner's logo/image.
+   - **Bài 3.3** — fix the **"visit counter" bug**: guide them to open **F12 → Console**, copy the red error, paste it to you; only then fix it.
+   - **Bài 5 / 5.1** — commit with Git, then push to a **private** GitHub repo.
+   - **Bài 6** — deploy to **Vercel**.
+   - **Bài 7** — move the hardcoded API key in `config.js` into a `.env` file.
 4. For each task: explain what to do, make the edit only when asked, then point out that the panel ticks green.
 5. Pause and ask the learner whenever you need a permission, a password, or a browser sign-in.
+
+## How the "Lộ trình" panel detects completion (so you can verify your own work)
+`guide.js` auto-checks the live page. Make sure your edits actually satisfy these:
+- **Rename** ✓ when the brand text (`#brandName`) equals **"Apero"** (case-insensitive).
+- **Headline** ✓ when `#headline` text differs from the default sample sentence.
+- **Color** ✓ when the primary button's background color is in the **purple hue range** (≈ 250–330°). Easiest: change `--brand` in `styles.css`, which recolors the buttons.
+- **Logo** ✓ when `#logo`'s `src` no longer contains "logo-placeholder" **and** the image actually loads.
+- **Fix bug** ✓ when `#visitCount` shows a real number (define the missing function in `app.js`; the learner must reload to see it).
+- **Deploy** ✓ only when the page is opened on a `*.vercel.app` URL.
+- **Commit / Push / .env** are manual — the learner ticks them; you just guide & confirm.
+
+> Don't edit `guide.js`. Keep the brand text exactly "Apero", recolor via `--brand`, and make sure new images load — otherwise the panel won't tick green.
 
 > Keep changes minimal and targeted — edit only the relevant lines, explain in plain Vietnamese, and let the learner see each result before moving on.

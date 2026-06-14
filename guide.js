@@ -14,7 +14,13 @@
     var el = document.querySelector(sel);
     return el ? (el.textContent || "").trim() : "";
   }
-  function brandRgb() {
+  // đọc MÀU NỀN nút chính thật (phản ánh màu chủ đạo dù đổi qua --brand hay trực tiếp)
+  function primaryRgb() {
+    var el = document.querySelector(".btn");
+    if (el) {
+      var bg = getComputedStyle(el).backgroundColor;
+      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") return bg;
+    }
     var raw = getComputedStyle(document.documentElement).getPropertyValue("--brand").trim();
     var p = document.createElement("span");
     p.style.color = raw; document.body.appendChild(p);
@@ -22,7 +28,7 @@
     return rgb;
   }
   function isPurple() {
-    var m = brandRgb().match(/\d+/g); if (!m) return false;
+    var m = primaryRgb().match(/\d+/g); if (!m) return false;
     var r = +m[0] / 255, g = +m[1] / 255, b = +m[2] / 255;
     var max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
     if (d < 0.08) return false;
@@ -51,23 +57,23 @@
       auto: function () { return true; } },
 
     { id: "name", tag: "Bài 3.1", title: 'Đổi tên thành “Apero”', target: "#brandName",
-      instruct: "Mở <code>index.html</code>, tìm <code>#brandName</code> (và <code>#brandFooter</code>), đổi thành <b>Apero</b>.",
-      prompt: "Trong file index.html, đổi tên thương hiệu (#brandName và #brandFooter) thành 'Apero'. Chỉ sửa đúng chỗ đó, giữ nguyên phần còn lại, rồi cho tôi xem lại.",
+      instruct: "Đổi tên thương hiệu hiển thị trên trang thành <b>Apero</b>. Cứ để AI tự tìm chỗ và sửa.",
+      prompt: "Đổi tên thương hiệu hiển thị trên trang thành 'Apero'. Bạn tự tìm những chỗ đang để tên cũ rồi sửa giúp tôi, chỉ sửa đúng chỗ đó.",
       auto: function () { return text("#brandName").toLowerCase() === "apero"; } },
 
     { id: "headline", tag: "Bài 3.1", title: "Đổi tiêu đề chính", target: "#headline",
-      instruct: "Trong <code>index.html</code>, đổi nội dung <code>#headline</code> thành câu của bạn.",
-      prompt: "Trong index.html, đổi nội dung tiêu đề chính (#headline) thành câu tôi sẽ đọc cho bạn. Cho tôi xem lại kết quả.",
+      instruct: "Đổi câu tiêu đề lớn ở đầu trang thành câu của bạn. Bảo AI tìm và đổi giúp.",
+      prompt: "Đổi câu tiêu đề lớn (headline) ở đầu trang thành câu tôi sẽ đọc cho bạn. Tự tìm đúng chỗ và sửa giúp tôi.",
       auto: function () { var t = text("#headline"); return t !== "" && t !== DEFAULT_HEADLINE; } },
 
     { id: "color", tag: "Bài 3.1", title: "Đổi màu chủ đạo sang TÍM", target: ".hero-actions .btn",
-      instruct: "Trong <code>styles.css</code>, đổi biến <code>--brand</code> sang màu tím (vd <code>#7c3aed</code>).",
-      prompt: "Trong styles.css, đổi biến --brand sang màu tím (#7c3aed). Giải thích ngắn gọn biến đó ảnh hưởng tới những phần nào trên trang.",
+      instruct: "Đổi màu chủ đạo của trang sang <b>tím</b>. AI sẽ biết chỗ cần chỉnh.",
+      prompt: "Đổi màu chủ đạo (màu chính) của trang sang tông tím. Tự tìm chỗ định nghĩa màu và đổi giúp tôi, giải thích ngắn gọn nó ảnh hưởng tới những phần nào.",
       auto: isPurple },
 
     { id: "logo", tag: "Bài 3.2", title: "Thêm logo / ảnh của bạn", target: "#logo",
-      instruct: "Bỏ ảnh vào thư mục <code>assets</code>, rồi đổi <code>src</code> của <code>#logo</code> trong <code>index.html</code>.",
-      prompt: "Tôi vừa bỏ ảnh tên logo.png vào thư mục assets. Hãy thay logo (#logo trong index.html) bằng ảnh này và giải thích đường dẫn ảnh hoạt động thế nào.",
+      instruct: "Thay logo trên trang bằng ảnh của bạn. Bỏ ảnh vào dự án rồi nhờ AI gắn.",
+      prompt: "Tôi vừa bỏ một ảnh (logo.png) vào dự án. Hãy thay logo hiện tại trên trang bằng ảnh này — tự tìm chỗ đang dùng logo cũ và thay giúp tôi.",
       auto: logoChanged },
 
     { id: "bug", tag: "Bài 3.3", title: "Sửa lỗi “Lượt ghé thăm”", target: ".visit-card",
@@ -131,6 +137,7 @@
       '<button class="g-collapse" id="gCollapse" type="button" title="Ẩn thanh này" aria-label="Ẩn">✕</button></div>' +
       '<p class="guide-sub" id="gSub"></p>' +
       '<div class="g-progress"><i id="gBar"></i></div>' +
+      '<p class="guide-tip">💡 Thử tự diễn đạt yêu cầu cho AI trước — bí mới mở “Xem prompt gửi AI”.</p>' +
       '<div class="g-list" id="gList"></div>' +
       '<div class="g-done-banner" id="gBanner">🎉 Hoàn thành tất cả — bạn giỏi lắm!</div>';
 
