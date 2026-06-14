@@ -4,7 +4,7 @@
    • Bảng "Lộ trình" dùng màu riêng (indigo/lime) nên không bị đổi theo.
    =========================================================================== */
 :root {
-  --brand: #1e63ff; /* SỬA TÔI (Bài 2.1): đổi sang màu TÍM, ví dụ #7c3aed */
+  --brand: #1e63ff; /* SỬA TÔI (Bài 3.1): đổi sang màu TÍM, ví dụ #7c3aed */
 
   --navy: #0b131c;
   --indigo: #3556eb;

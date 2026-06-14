@@ -17,7 +17,7 @@ learner will modify step by step by giving you instructions. When it runs, a
 | `config.js` | Has a **hardcoded API key** on purpose (for the `.env` exercise). The page prints it on screen as a red "exposed key" warning. |
 | `i18n.js` | Bilingual VI/EN text + the 🌐 language toggle — **do not edit**. |
 | `guide.js` | The "Lộ trình" checklist UI — **do not edit**. It auto-detects task completion. |
-| `certificate.js` | Completion certificate — **do not edit**. Auto-pops when ALL tasks are done; the learner types their name + adds a photo and can Print/Save as PDF. (Mentor backdoor: the 🏆 button bottom-left, or `?cert=1`.) |
+| `certificate.js` | Completion certificate — **do not edit**. When ALL tasks are done, a congrats popup appears and leads to a certificate (with the Apero logo) where the learner types their name and can Print/Save as PDF. (Mentor preview: the 🏆 button bottom-left — shown only on localhost — or `?cert=1` / `?congrats=1`.) |
 | `assets/` | Images, logo placeholder, wave video. |
 | `setup-plan.md` | Environment install plan (git/node/python…). |
 
@@ -36,7 +36,7 @@ The learner must do these themselves, with your guidance. Until they explicitly 
 ## Your job as coach
 1. **Read & understand** the code first (open the files above, explain briefly how they link).
 2. **Run** the site and confirm the "Lộ trình" panel shows.
-3. Then **walk the learner through the tasks in the panel, one at a time**, in **Vietnamese**, beginner-friendly:
+3. Then **walk the learner through the tasks in the panel, one at a time**, in the **learner's language** (match the 🌐 toggle; default Vietnamese), beginner-friendly:
    - **Bài 3** — run the site (already running).
    - **Bài 3.1** — rename the brand to **"Apero"**, change the main headline, and change the primary color to **purple**.
    - **Bài 3.2** — add the learner's logo/image.
