@@ -212,6 +212,11 @@ a { color: var(--brand); text-decoration: none; }
 .g-step.open .g-body { display: block; }
 .g-instruct { font-size: 0.92rem; color: #c7d0e3; line-height: 1.5; margin: 0 0 12px; }
 .g-instruct code { background: rgba(255,255,255,0.1); padding: 1px 6px; border-radius: 5px; font-size: 0.86em; }
+.g-shot {
+  font-size: 0.84rem; line-height: 1.45; color: #bdf3ff; margin: 0 0 12px;
+  padding: 8px 11px; border-radius: 9px;
+  background: rgba(52,227,255,0.10); border: 1px solid rgba(52,227,255,0.28);
+}
 
 .g-prompt-btn {
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -395,42 +400,45 @@ body.guide-collapsed .guide-toggle { display: block; }
   box-shadow: 0 26px 70px rgba(10, 14, 24, 0.4);
 }
 .cert-frame {
-  position: relative; border: 1.5px solid rgba(53, 86, 235, 0.25);
-  border-radius: 12px; padding: 40px 56px 32px; text-align: center;
+  position: relative; border: 1.5px solid rgba(53, 86, 235, 0.22);
+  border-radius: 12px; padding: 36px 56px 30px; text-align: center;
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(159,112,252,0.10), transparent 60%),
+    radial-gradient(130% 90% at 50% -15%, rgba(159,112,252,0.10), transparent 55%),
+    radial-gradient(100% 70% at 50% 115%, rgba(52,227,255,0.08), transparent 55%),
+    repeating-linear-gradient(45deg, rgba(53,86,235,0.022) 0 2px, transparent 2px 9px),
     #fff;
 }
-.cert-corner { position: absolute; width: 26px; height: 26px; }
-.cert-corner.tl { top: 12px; left: 12px; border-top: 3px solid var(--lime); border-left: 3px solid var(--lime); }
-.cert-corner.tr { top: 12px; right: 12px; border-top: 3px solid var(--violet); border-right: 3px solid var(--violet); }
-.cert-corner.bl { bottom: 12px; left: 12px; border-bottom: 3px solid var(--violet); border-left: 3px solid var(--violet); }
-.cert-corner.br { bottom: 12px; right: 12px; border-bottom: 3px solid var(--lime); border-right: 3px solid var(--lime); }
+.cert-corner { position: absolute; width: 30px; height: 30px; border-radius: 2px; }
+.cert-corner.tl { top: 12px; left: 12px; border-top: 2.5px solid var(--indigo); border-left: 2.5px solid var(--indigo); }
+.cert-corner.tr { top: 12px; right: 12px; border-top: 2.5px solid var(--violet); border-right: 2.5px solid var(--violet); }
+.cert-corner.bl { bottom: 12px; left: 12px; border-bottom: 2.5px solid var(--violet); border-left: 2.5px solid var(--violet); }
+.cert-corner.br { bottom: 12px; right: 12px; border-bottom: 2.5px solid var(--indigo); border-right: 2.5px solid var(--indigo); }
 
-.cert-kicker { margin: 0; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.22em; color: var(--indigo); }
+.cert-logo { height: 30px; width: auto; margin: 2px auto 16px; display: block; opacity: 0.95; }
+.cert-kicker { margin: 0; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.36em; color: var(--indigo); }
 .cert-title {
-  margin: 6px 0 14px; font-size: clamp(1.6rem, 3.4vw, 2.5rem); font-weight: 800;
-  line-height: 1.1; color: var(--navy);
+  margin: 6px 0 10px; font-size: clamp(1.5rem, 3.2vw, 2.3rem); font-weight: 800;
+  line-height: 1.12; color: var(--navy);
 }
-.cert-photo {
-  width: 96px; height: 96px; margin: 0 auto 14px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
-  background: linear-gradient(135deg, rgba(53,86,235,0.12), rgba(159,112,252,0.16));
-  border: 3px solid #fff; box-shadow: 0 6px 18px rgba(11,19,28,0.18), 0 0 0 2px rgba(53,86,235,0.25);
+.cert-rule {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto 18px; max-width: 320px;
 }
-.cert-photo img { width: 100%; height: 100%; object-fit: cover; }
-.cert-photo-ph { font-size: 2.4rem; }
+.cert-rule span { height: 1.5px; flex: 1; background: linear-gradient(90deg, transparent, rgba(53,86,235,0.5)); }
+.cert-rule span:last-child { background: linear-gradient(90deg, rgba(159,112,252,0.5), transparent); }
+.cert-rule b { color: var(--violet); font-size: 0.8rem; }
+
 .cert-certifies { margin: 0; font-size: 0.95rem; color: var(--muted); }
 .cert-name {
-  margin: 6px 0 10px; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.1;
+  margin: 8px 0 12px; font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 800; line-height: 1.1;
   background: linear-gradient(120deg, var(--indigo), var(--violet)); -webkit-background-clip: text;
   background-clip: text; color: transparent;
 }
 .cert-name.empty { opacity: 0.4; }
-.cert-body { margin: 0 auto; max-width: 60ch; font-size: 1rem; line-height: 1.6; color: var(--ink); }
+.cert-body { margin: 0 auto; max-width: 58ch; font-size: 1rem; line-height: 1.6; color: var(--ink); }
 .cert-skills {
-  margin: 16px auto 0; display: inline-block; padding: 8px 16px; border-radius: 999px;
+  margin: 16px auto 0; display: inline-block; padding: 8px 18px; border-radius: 999px;
   background: rgba(53,86,235,0.08); color: var(--indigo); font-weight: 700; font-size: 0.85rem;
+  border: 1px solid rgba(53,86,235,0.18);
 }
 .cert-foot {
   margin-top: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
@@ -440,10 +448,17 @@ body.guide-collapsed .guide-toggle { display: block; }
 .cert-date b { font-size: 0.95rem; color: var(--ink); }
 .cert-sign b { font-size: 1.05rem; color: var(--navy); border-top: 1.5px solid var(--line); padding-top: 6px; display: inline-block; min-width: 150px; }
 .cert-seal {
-  width: 64px; height: 64px; border-radius: 50%; flex: none; font-size: 1.7rem;
-  display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(circle at 35% 30%, #fff7c2, var(--lime));
-  box-shadow: 0 8px 22px rgba(180,190,40,0.4), inset 0 0 0 4px rgba(255,255,255,0.5);
+  position: relative; width: 66px; height: 66px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center; color: #8a6d00;
+  background: radial-gradient(circle at 35% 28%, #fff6c0, #f4d24a 55%, #d8a92a 100%);
+  box-shadow: 0 8px 22px rgba(180,150,30,0.45), inset 0 0 0 3px rgba(255,255,255,0.55), inset 0 0 0 5px rgba(216,169,42,0.5);
+}
+.cert-seal-star { font-size: 1.6rem; line-height: 1; filter: drop-shadow(0 1px 0 rgba(255,255,255,0.5)); }
+.cert-ribbon {
+  position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+  width: 26px; height: 20px;
+  background: linear-gradient(180deg, var(--indigo), #2742b8);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
 }
 body.cert-open { overflow: hidden; }
 

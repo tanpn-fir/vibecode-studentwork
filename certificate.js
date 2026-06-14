@@ -1,7 +1,7 @@
 /* ===========================================================================
    GIẤY CHỨNG NHẬN  ·  CERTIFICATE
    - Tự xuất hiện khi học viên hoàn thành TẤT CẢ bài trong Lộ trình.
-   - Học viên nhập TÊN + ẢNH → hiện giấy chứng nhận đẹp, tải về (In / PDF).
+   - Học viên nhập TÊN → hiện giấy chứng nhận đẹp, có logo Apero, tải về (In / PDF).
    - Backdoor: nút 🏆 nhỏ góc dưới-trái (luôn có) + deep-link ?cert=1
      để mentor xem trước / giới thiệu cho học viên.
    - Song ngữ Việt / English (theo nút 🌐).
@@ -16,8 +16,8 @@
   }
 
   var TX = {
-    kicker: { vi: "APERO · VIBE CODING WORKSHOP", en: "APERO · VIBE CODING WORKSHOP" },
-    title: { vi: "Giấy chứng nhận hoàn thành", en: "Certificate of Completion" },
+    kicker: { vi: "GIẤY CHỨNG NHẬN", en: "CERTIFICATE" },
+    title: { vi: "Hoàn thành khoá Vibe Coding", en: "Vibe Coding Completion" },
     certifies: { vi: "Chứng nhận rằng", en: "This certifies that" },
     namePh: { vi: "Nhập tên của bạn", en: "Enter your name" },
     body: {
@@ -30,15 +30,13 @@
     },
     dateLabel: { vi: "Ngày cấp", en: "Date" },
     signRole: { vi: "Mentor · Apero", en: "Mentor · Apero" },
-    congrats: { vi: "🎉 Chúc mừng! Bạn đã hoàn thành tất cả.", en: "🎉 Congrats! You finished everything." },
     nameField: { vi: "Tên trên chứng nhận", en: "Name on certificate" },
-    addPhoto: { vi: "📷 Thêm ảnh", en: "📷 Add photo" },
     download: { vi: "⬇️ Tải về (In / PDF)", en: "⬇️ Download (Print / PDF)" },
     close: { vi: "Đóng", en: "Close" },
     backdoor: { vi: "Xem thử giấy chứng nhận (mentor)", en: "Preview certificate (mentor)" },
   };
 
-  var state = { name: "", photo: "" };
+  var state = { name: "" };
 
   function fmtDate() {
     try {
@@ -67,8 +65,6 @@
         '<div class="cert-controls">' +
           '<label class="cert-ctrl-name"><span data-c="nameField"></span>' +
             '<input id="certName" type="text" autocomplete="name" /></label>' +
-          '<label class="cert-ctrl-photo"><span data-c="addPhoto"></span>' +
-            '<input id="certPhoto" type="file" accept="image/*" hidden /></label>' +
           '<button id="certDownload" class="cert-dl" type="button"></button>' +
         '</div>' +
 
@@ -76,16 +72,17 @@
           '<div class="cert-frame">' +
             '<div class="cert-corner tl"></div><div class="cert-corner tr"></div>' +
             '<div class="cert-corner bl"></div><div class="cert-corner br"></div>' +
+            '<img class="cert-logo" src="assets/apero-logo.svg" alt="Apero" />' +
             '<p class="cert-kicker" data-c="kicker"></p>' +
             '<h2 class="cert-title" data-c="title"></h2>' +
-            '<div class="cert-photo" id="certPhotoWrap"><span class="cert-photo-ph">🙂</span></div>' +
+            '<div class="cert-rule"><span></span><b>★</b><span></span></div>' +
             '<p class="cert-certifies" data-c="certifies"></p>' +
             '<p class="cert-name" id="certNameOut"></p>' +
             '<p class="cert-body" data-c="body"></p>' +
             '<p class="cert-skills" data-c="skills"></p>' +
             '<div class="cert-foot">' +
               '<div class="cert-date"><small data-c="dateLabel"></small><b id="certDate"></b></div>' +
-              '<div class="cert-seal">🏆</div>' +
+              '<div class="cert-seal"><span class="cert-seal-star">★</span><i class="cert-ribbon"></i></div>' +
               '<div class="cert-sign"><b>Phạm Nhật Tân</b><small data-c="signRole"></small></div>' +
             '</div>' +
           '</div>' +
@@ -100,17 +97,6 @@
     nameInput.addEventListener("input", function () {
       state.name = nameInput.value;
       renderName();
-    });
-
-    overlay.querySelector(".cert-ctrl-photo").addEventListener("click", function () {
-      overlay.querySelector("#certPhoto").click();
-    });
-    overlay.querySelector("#certPhoto").addEventListener("change", function (e) {
-      var f = e.target.files && e.target.files[0];
-      if (!f) return;
-      var r = new FileReader();
-      r.onload = function () { state.photo = r.result; renderPhoto(); };
-      r.readAsDataURL(f);
     });
 
     overlay.querySelector("#certDownload").addEventListener("click", function () {
@@ -129,14 +115,6 @@
     out.textContent = state.name || t(TX.namePh);
     out.classList.toggle("empty", !state.name);
   }
-  function renderPhoto() {
-    var wrap = overlay.querySelector("#certPhotoWrap");
-    if (state.photo) {
-      wrap.innerHTML = '<img alt="" src="' + state.photo + '" />';
-    } else {
-      wrap.innerHTML = '<span class="cert-photo-ph">🙂</span>';
-    }
-  }
   function applyText() {
     overlay.querySelectorAll("[data-c]").forEach(function (el) {
       el.textContent = t(TX[el.getAttribute("data-c")]);
@@ -151,7 +129,6 @@
   function open() {
     buildOnce();
     applyText();
-    renderPhoto();
     overlay.hidden = false;
     document.body.classList.add("cert-open");
     setTimeout(function () { overlay.classList.add("show"); }, 10);

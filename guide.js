@@ -28,6 +28,10 @@
       vi: "💡 Thử tự diễn đạt yêu cầu cho AI trước — bí mới mở “Xem prompt gửi AI”.",
       en: "💡 Try phrasing the request to the AI yourself first — only open “See the prompt” if stuck.",
     },
+    shotTip: {
+      vi: "📸 Bạn có thể chụp màn hình chỗ muốn sửa rồi gửi (dán) cho AI — nó sẽ thấy đúng phần bạn đang nói tới.",
+      en: "📸 You can screenshot the part you want changed and paste it to the AI — it'll see exactly what you mean.",
+    },
     promptHead: { vi: "Prompt — copy & gửi AI", en: "Prompt — copy & send to the AI" },
     showPrompt: { vi: "✨ Xem prompt gửi AI", en: "✨ See the prompt" },
     focusBtn: { vi: "🔎 Chỉ cho tôi trên trang", en: "🔎 Show me on the page" },
@@ -109,7 +113,7 @@
       auto: function () { return true; },
     },
     {
-      id: "name", tag: "Bài 3.1", target: "#brandName",
+      id: "name", tag: "Bài 3.1", target: "#brandName", shot: true,
       title: { vi: "Đổi tên thành “Apero”", en: "Rename it to “Apero”" },
       instruct: {
         vi: "Đổi tên thương hiệu hiển thị trên trang thành <b>Apero</b>. Cứ để AI tự tìm chỗ và sửa.",
@@ -122,7 +126,7 @@
       auto: function () { return text("#brandName").toLowerCase() === "apero"; },
     },
     {
-      id: "headline", tag: "Bài 3.1", target: "#headline",
+      id: "headline", tag: "Bài 3.1", target: "#headline", shot: true,
       title: { vi: "Đổi tiêu đề chính", en: "Change the main headline" },
       instruct: {
         vi: "Đổi câu tiêu đề lớn ở đầu trang thành câu của bạn. Bảo AI tìm và đổi giúp.",
@@ -135,7 +139,7 @@
       auto: headlineChanged,
     },
     {
-      id: "color", tag: "Bài 3.1", target: ".hero-actions .btn",
+      id: "color", tag: "Bài 3.1", target: ".hero-actions .btn", shot: true,
       title: { vi: "Đổi màu chủ đạo sang TÍM", en: "Change the primary color to PURPLE" },
       instruct: {
         vi: "Đổi màu chủ đạo của trang sang <b>tím</b>. AI sẽ biết chỗ cần chỉnh.",
@@ -148,7 +152,7 @@
       auto: isPurple,
     },
     {
-      id: "logo", tag: "Bài 3.2", target: "#logo",
+      id: "logo", tag: "Bài 3.2", target: "#logo", shot: true,
       title: { vi: "Thêm logo / ảnh của bạn", en: "Add your logo / image" },
       instruct: {
         vi: "Thay logo trên trang bằng ảnh của bạn. Bỏ ảnh vào dự án rồi nhờ AI gắn.",
@@ -161,7 +165,7 @@
       auto: logoChanged,
     },
     {
-      id: "bug", tag: "Bài 3.3", target: ".visit-card",
+      id: "bug", tag: "Bài 3.3", target: ".visit-card", shot: true,
       title: { vi: "Sửa lỗi “Lượt ghé thăm”", en: "Fix the “Visit count” bug" },
       instruct: {
         vi: "Mở <b>F12 → Console</b>, copy dòng lỗi <b>màu đỏ</b>, dán cho AI nhờ sửa.",
@@ -302,6 +306,7 @@
         "</div>" +
         '<div class="g-body">' +
           '<p class="g-instruct">' + L(t.instruct) + "</p>" +
+          (t.shot ? '<p class="g-shot">' + L(UI.shotTip) + "</p>" : "") +
           (t.target ? '<button class="g-focus" type="button">' + L(UI.focusBtn) + "</button>" : "") +
           '<button class="g-prompt-btn" type="button">' + L(UI.showPrompt) + "</button>" +
           '<div class="g-prompt">' +
