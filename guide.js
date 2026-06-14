@@ -86,9 +86,14 @@
       prompt: "Hãy commit toàn bộ thay đổi với mô tả 'Hoàn thành landing page'. Sau đó: chỉ tôi cách xem lịch sử commit, quay về commit ĐẦU TIÊN để chạy lại trang và thấy các thay đổi biến mất, rồi quay lại commit MỚI NHẤT để mọi thứ trở lại đầy đủ.",
       manual: true },
 
-    { id: "push", tag: "Bài 5.1", title: "Push lên GitHub (Private)",
-      instruct: "Tạo repo <b>Private</b> trên GitHub, rồi push code lên (tách khỏi repo gốc).",
-      prompt: "Tôi đã tạo repo Private trên GitHub tên <điền-tên-repo>. Hãy đổi remote sang repo này để tách khỏi repo gốc, rồi push toàn bộ code lên.",
+    { id: "createrepo", tag: "Bài 5.1", title: "Tạo repo trên GitHub (Private)",
+      instruct: "Trên GitHub: bấm <b>+</b> → New repository, đặt tên, chọn <b>Private</b>, Create. ⚠️ Bước này dễ lỗi / đòi quyền — bạn có thể phải thao tác tay.",
+      prompt: "Tạo giúp tôi một repo GitHub PRIVATE tên 'vibecode-studentwork' (có thể dùng lệnh gh repo create). Cho tôi link repo. Nếu gh chưa có quyền thì dừng lại và chỉ tôi cách tạo tay trên github.com.",
+      manual: true },
+
+    { id: "push", tag: "Bài 5.2", title: "Push lên GitHub (repo riêng)",
+      instruct: "Push code lên repo Private vừa tạo — tách khỏi repo gốc đã clone.",
+      prompt: "Hãy đổi remote sang repo Private tôi vừa tạo (<điền-tên-repo>) để tách khỏi repo gốc, rồi push toàn bộ code lên.",
       manual: true },
 
     { id: "deploy", tag: "Bài 6", title: "Deploy lên Vercel",
