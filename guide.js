@@ -81,9 +81,9 @@
       prompt: "Trang đang lỗi ở widget 'Lượt ghé thăm'. Tôi mở F12 → Console và copy được lỗi sau, đọc giúp và sửa:\n\n<dán đoạn log lỗi màu đỏ vào đây>\n\nGiải thích ngắn gọn nguyên nhân rồi sửa đúng chỗ gây lỗi.",
       auto: bugFixed },
 
-    { id: "commit", tag: "Bài 5", title: "Lưu mốc (commit) bằng Git",
-      instruct: "Nhờ AI commit toàn bộ thay đổi, rồi xem lại lịch sử các mốc.",
-      prompt: "Hãy giúp tôi lưu toàn bộ thay đổi hiện tại thành một mốc (commit) với mô tả 'Hoàn thành landing page'. Sau đó chỉ tôi cách xem lại lịch sử các mốc và cách quay về mốc cũ.",
+    { id: "commit", tag: "Bài 5", title: "Commit & quay tới / quay lui",
+      instruct: "Commit thay đổi. Rồi thử quay về commit <b>đầu tiên</b> — chạy lại sẽ thấy mọi thay đổi biến mất; quay lại commit <b>mới nhất</b> — mọi thứ trở lại.",
+      prompt: "Hãy commit toàn bộ thay đổi với mô tả 'Hoàn thành landing page'. Sau đó: chỉ tôi cách xem lịch sử commit, quay về commit ĐẦU TIÊN để chạy lại trang và thấy các thay đổi biến mất, rồi quay lại commit MỚI NHẤT để mọi thứ trở lại đầy đủ.",
       manual: true },
 
     { id: "push", tag: "Bài 5.1", title: "Push lên GitHub (Private)",
