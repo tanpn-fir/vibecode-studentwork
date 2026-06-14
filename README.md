@@ -25,6 +25,7 @@ nó **tự tích xanh** nhiệm vụ đó.
 | `guide.js` | Bảng Lộ trình bài tập tự kiểm tra (**không cần sửa**) |
 | `assets/` | Ảnh, logo, video |
 | `setup-plan.md` | Plan cho **AI** đọc & cài đặt toàn bộ môi trường |
+| `AGENTS.md` | Hướng dẫn cho **AI** đóng vai coach: đọc code, run, dẫn bạn làm bài tập |
 
 ## ✅ Các nhiệm vụ (ứng với bài tập trên slide)
 
