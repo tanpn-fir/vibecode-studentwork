@@ -7,8 +7,10 @@ nó **tự tích xanh** nhiệm vụ đó.
 ## 🚀 Cách bắt đầu (cho người mới)
 
 1. Mở thư mục này trong **Antigravity**.
-2. Bảo AI: **“Đọc file SETUP.md và cài đặt giúp tôi toàn bộ môi trường (git, node, python…), rồi chạy trang lên.”**
-3. AI sẽ cài mọi thứ và mở trang ở `http://localhost:5173`.
+2. Bảo AI: **“Đọc file setup-plan.md và làm theo, xong thì tick done.”**
+3. AI sẽ cài git/node/python… và cuối cùng chạy trang ở `http://localhost:5173`.
+   ⚠️ AI sẽ xin nhiều quyền → kiểm tra rồi Accept (hoặc bật Auto mode). Vài bước
+   cần bạn tự làm: nhập tên/email, đăng nhập GitHub trên trình duyệt, nhập mật khẩu máy.
 
 > Chạy nhanh (nếu đã có Node): `npm run dev`
 
@@ -20,9 +22,9 @@ nó **tự tích xanh** nhiệm vụ đó.
 | `styles.css` | Màu sắc & giao diện (biến `--brand` là màu chủ đạo) |
 | `app.js` | Tính năng của trang — **có 1 lỗi cố ý** để luyện sửa bug |
 | `config.js` | Có 1 API key bị **hardcode** — bài tập đưa vào `.env` |
-| `missions.js` | Bảng nhiệm vụ tự kiểm tra (**không cần sửa**) |
-| `assets/` | Ảnh, logo |
-| `SETUP.md` | Hướng dẫn cho **AI** cài đặt môi trường |
+| `guide.js` | Bảng Lộ trình bài tập tự kiểm tra (**không cần sửa**) |
+| `assets/` | Ảnh, logo, video |
+| `setup-plan.md` | Plan cho **AI** đọc & cài đặt toàn bộ môi trường |
 
 ## ✅ Các nhiệm vụ (ứng với bài tập trên slide)
 
